@@ -3,28 +3,32 @@ var  Schema = mongoose.Schema;
 var schemas = {};
 
 schemas.students = new Schema({
-    name: {
-        type: String,
+    name: {//姓名
+        type: {},
         required: true
     },
-    sex: {
-        type: String,
+    sex: {  //性别
+        type: {},
         required: true
     },
-    like: {
-        type: String,
+    like: {  //意向
+        type: {},
         required: true
     },
-    major: {
-        type: String,
-        required: true
-    },
-    intro: {
-        type: String,
+    intro: {    //自我介绍
+        type: {},
         required: true
     } ,
-    tel: {
-        type: String,
+    stuID:{   //学号
+        type: {},
+        required: true
+    },
+    subject: { //专业班级
+        type: {},
+        require: true
+    },
+    call: {  //电话
+        type: {},
         require: true
     }
 });

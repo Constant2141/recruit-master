@@ -14,9 +14,10 @@ router.post('/submit', function (req, res, next) {
     name: body.name,
     sex: body.sex,
     like: body.like,
-    major: body.major,
     intro: body.intro,
-    tel: body.tel
+    stuID: body.stuID,
+    subject:body.subject,
+    call:body.call
   })
   console.log(data);
   data.save().then(suc => {
@@ -37,8 +38,8 @@ router.post('/submit', function (req, res, next) {
 
 router.get('/config', function (req, res) {
   // let url = decodeURIComponent(req.query.url);
-  // console.log(req.query);
-  let url = req.query.url;
+  console.log('40行'+req.query.url);
+  let url = decodeURIComponent(req.query.url);//这个一定要encodeURIComponent
 	if (!url) return res.json({
 		code: 403,
 		data: 'query.url not found'
@@ -54,10 +55,15 @@ router.get('/config', function (req, res) {
 
 
 
-// router.post('/share', function (req, res, next) {
-//   let hrefURL = req.body.urlhref;
-//   wxShare.prototype.accessToken(hrefURL, function (data) {
-//     res.json(data);
-//   });
-// })
+router.post('/show',function(req,res){
+  let where = req.body.name;
+  studentsModel.find({name:where},function(err,doc){
+    if(err) throw err;
+    let lastOne = doc.pop();
+    res.json({
+      code:200,
+      doc:lastOne
+    })
+  })
+})
 module.exports = router;
